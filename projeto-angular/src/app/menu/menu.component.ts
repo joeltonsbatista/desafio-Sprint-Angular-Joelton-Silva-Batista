@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -10,6 +10,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
+
+  constructor(private router: Router) {}
   menuOnClick(): void {
     const menuBar = document.getElementById("menu-bar");
     const nav = document.getElementById("nav");
@@ -22,5 +24,14 @@ export class MenuComponent {
     } else {
       console.warn("Um ou mais elementos não foram encontrados no DOM.");
     }
+  }
+  
+  logout() {
+    // Limpa sessão
+    localStorage.removeItem('token');
+    sessionStorage.clear();
+
+    // Redireciona para login
+    this.router.navigate(['/login']);
   }
 }

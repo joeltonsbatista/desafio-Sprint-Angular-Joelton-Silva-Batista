@@ -12,11 +12,11 @@
           <h2 class="login-title">Boas-Vindas</h2>
           <mat-form-field>
             <mat-label>nome</mat-label>
-            <input type="text" [(ngModel)]="nome" name="nome" matInput />
+            <input type="text" [(ngModel)]="usuario.nome" name="nome" matInput />
           </mat-form-field>
           <mat-form-field>
             <mat-label>Senha</mat-label>
-            <input type="password" [(ngModel)]="senha" name="senha" matInput />
+            <input type="password" [(ngModel)]="usuario.senha" name="senha" matInput />
           </mat-form-field>
           <mat-slide-toggle [(ngModel)]="logarAutomaticamente" name="logarAutomaticamente">
   Logar automaticamente

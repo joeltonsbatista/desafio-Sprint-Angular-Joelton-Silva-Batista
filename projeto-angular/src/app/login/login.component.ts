@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,12 +24,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  nome = '';
-  senha = '';
+  usuario = {
+    nome:"",
+    senha:""
+  }
   logarAutomaticamente = false; // 👈 nova propriedade
   dataAtual = new Date();
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService ,private router: Router) {}
 
   hide = signal(true);
 
@@ -38,20 +41,26 @@ export class LoginComponent {
   }
 
   login() {
-    if (this.nome !== 'admin' || this.senha !== '123456') {
+    console.log(this.usuario)
+    if (this.usuario.nome !== 'admin' || this.usuario.senha !== '123456') {
       alert('Nome ou senha inválidos');
     } else {
+      console.log(this.usuario)
       // ✅ Salva no localStorage se estiver marcado
       if (this.logarAutomaticamente) {
         localStorage.setItem('usuarioLogado', JSON.stringify({
-          nome: this.nome,
-          senha: this.senha
+          nome: this.usuario.nome,
+          senha: this.usuario.senha
         }));
       } else {
         localStorage.removeItem('usuarioLogado');
       }
 
-      this.router.navigate(['/home']);
+      this.authService.login(this.usuario).subscribe({
+        next:(response) => {
+          this.router.navigate(["/home"])
+        }
+      })
     }
   }
 
@@ -60,8 +69,8 @@ export class LoginComponent {
     const salvo = localStorage.getItem('usuarioLogado');
     if (salvo) {
       const dados = JSON.parse(salvo);
-      this.nome = dados.nome;
-      this.senha = dados.senha;
+      this.usuario.nome = dados.nome;
+      this.usuario.senha = dados.senha;
       this.logarAutomaticamente = true;
     }
   }
