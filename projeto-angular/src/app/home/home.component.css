@@ -1,5 +1,61 @@
-.imagem{
-margin-top: 10% ;
-display: flex;
-justify-content: center;
+/* Botão de logout fixo no canto superior direito */
+/* Botão de logout fixo no canto superior direito */
+.logout-btn {
+  position: fixed;  /* fixo em relação à tela */
+  top: 15px;
+  right: 20px;
+  background: #d9534f;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 14px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 9999; /* maior que a navbar */
 }
+
+.logout-btn:hover {
+  background: #c9302c;
+}
+
+.home-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;         /* ocupa a altura da tela */
+  display: flex;         /* centraliza com flexbox */
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.imagem img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;   /* mantém a proporção SEM cortar */
+  display: block;
+}
+
+
+.overlay-box {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 40px;           /* aumenta espaço interno */
+  width: 450px;            /* define largura maior */
+  min-height: 200px;       /* garante altura mínima */
+  border-radius: 12px;     /* cantos arredondados mais visíveis */
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.4);
+}
+
+.overlay-box h3 {
+  margin: 0 0 15px;
+  font-size: 1.2rem;       /* título maior */
+}
+
+.welcome {
+  color: #007bff;
+  font-weight: bold;
+  font-size:1.8rem;       /* aumenta o texto de boas-vindas */
+}
+

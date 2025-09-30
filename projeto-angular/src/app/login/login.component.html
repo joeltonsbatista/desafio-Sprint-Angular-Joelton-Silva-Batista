@@ -18,6 +18,11 @@
             <mat-label>Senha</mat-label>
             <input type="password" [(ngModel)]="senha" name="senha" matInput />
           </mat-form-field>
+          <mat-slide-toggle [(ngModel)]="logarAutomaticamente" name="logarAutomaticamente">
+  Logar automaticamente
+</mat-slide-toggle>
+<br>
+<br>
 
           <button mat-fab extended>Entrar</button>
         </form>
